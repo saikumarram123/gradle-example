@@ -1,0 +1,6 @@
+
+rootProject.name = 'gradle-example'
+
+include 'greeting-library'
+include 'greeter'
+include 'docs'

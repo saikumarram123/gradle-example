@@ -1,0 +1,15 @@
+
+//	Apply the Asciidoctor plugin to this subproject. This technique lets you selectively apply plugins to sub-projects while defining all of the plugins in the root project.
+plugins {
+    id 'org.asciidoctor.convert'
+}
+
+//Tells the plugin to look for a document called greeter.adoc in the default source folder src/docs/asciidoc
+asciidoctor {
+    sources {
+        include 'greeter.adoc'
+    }
+}
+
+//Adds asciidoctor task into the build lifecycle so that if build is executed for the top-level project, then documentation will be built as well.
+build.dependsOn 'asciidoctor'

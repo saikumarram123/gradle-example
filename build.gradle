@@ -1,0 +1,37 @@
+
+/*
+buildscript closure ensures that the dependencies are available for use within the gradle build itself
+e.g. buildscript usualy contains list of gradle plugins as dependencies
+
+* The global level dependencies and repositories sections list dependencies that required for building your source and running your source etc.
+* The buildscript is for the build.gradle file itself. So, this would contain dependencies for say creating RPMs, Dockerfile, and any other dependencies for running the tasks in all the dependent build.gradle
+ */
+buildscript {
+    ext.kotlin_version = '1.2.61'
+
+    repositories {
+        mavenCentral()
+    }
+//    dependencies {
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//    }
+}
+
+//The use of apply false adds the plugin to the overall project, but does not add it to the root project.
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.6' apply false
+}
+
+
+ allprojects {
+    repositories {
+        jcenter() 
+    }
+}
+
+subprojects {
+    version = '1.0'
+}
+
+
+

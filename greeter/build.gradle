@@ -1,0 +1,16 @@
+plugins {
+    id 'java'        
+    id 'application' 
+}
+
+dependencies {
+    compile project(':greeting-library') 
+}
+
+//Use mainClassName to set the entry point.
+// Part of 'application' plugin which is enabled
+mainClassName = 'greeter.Greeter'
+
+
+
+
