@@ -7,8 +7,8 @@ Based on [creating-multi-project-builds](https://github.com/gradle-guides/creati
 * The gradle command looks for a file called `build.gradle` in the current directory. We call this `build.gradle` file a _build script_
 * The _build script_ defines a **project** and its **tasks**.
 
-##Setting up Project
-1. The first step is to create a folder for the new project and add a Gradle Wrapper to the project
+## Setting up Project
+**1.** The first step is to create a folder for the new project and add a Gradle Wrapper to the project
 
 ```
 $ mkdir creating-multi-project-builds
@@ -16,7 +16,7 @@ $ cd creating-multi-project-builds
 $ gradle init  
 ```
 
-2. Open the **settings.gradle** and name your project
+**2.** Open the **settings.gradle** and name your project
 ```groovy
 rootProject.name = 'creating-multi-project-builds'
 ```
@@ -30,7 +30,7 @@ include 'greeter'
 include 'docs'
 ```
 
-3. In a multi-project you can use the top-level build script (also known as the root project) to configure as much commonality as possible, leaving sub-projects to customize only what is necessary for that subproject
+**3.** In a multi-project you can use the top-level build script (also known as the root project) to configure as much commonality as possible, leaving sub-projects to customize only what is necessary for that subproject
 The _allprojects_ block is used to a**dd configuration items that will apply to all sub-projects as well as the root project**. In a similar fashion, **the subprojects block can be used to add configurations items for all sub-projects only**. You can use these two blocks as many times as you want in the root project.
 Now set the version for each of the modules which you will be adding, via the subproject block in the top-level build script as follows
 
