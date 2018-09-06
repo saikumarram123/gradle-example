@@ -124,7 +124,11 @@ build.dependsOn 'asciidoctor'
 
 ## Gradle Properties
 #### gradle.properties
+Properties can also be provided to a Gradle build via a properties file named gradle.properties.
+* _systemProp._ - Any properties specified with _systemProp._ at the beginning of their property name are seen as system properties in the Gradle build and 
+* other properties (without their names beginning with _"systemProp."_) are seen as Gradle project properties. 
 
+For example, if my gradle.properties file had a property name.last=Marx and a propertysystemPropr.name.first=Dustin, the name.last property would be seen and accessed in the Gradle build like any project property while the name.first property would be seen and accessed in the Gradle build like any system property.
 #### Extra Properties
 `ext` is shorthand for project.ext, and is used to define extra properties for the project object. (It's also possible to define extra properties for many other objects.) When reading an extra property, the ext. is omitted (e.g. println project.springVersion or println springVersion). The same works from within methods. It does not make sense to declare a method named ext
 
