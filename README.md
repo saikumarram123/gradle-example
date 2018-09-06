@@ -141,3 +141,89 @@ dependencies {
     compile group: 'info.cukes', name: 'cucumber-java8', version: "$cukesVersion"
 }
 ```
+
+## Tasks
+
+Defining tasks
+
+```groovy
+task hello {
+    doLast {
+        println 'Hello world!'
+    }
+}
+```
+
+What’s going on here? This build script defines a single task, called hello, and adds an action to it. 
+When you run gradle hello, Gradle executes the hello task, which in turn executes the action you’ve provided. 
+The action is simply a closure containing some Groovy code to execute.
+
+#### Shortcut task definition
+**NB! This functionality is deprecated and will be removed in Gradle 5.0 without replacement. Use the methods Task.doFirst(org.gradle.api.Action) and Task.doLast(org.gradle.api.Action) to define an action instead, as demonstrated by the rest of the examples in this chapter.**
+```groovy
+task hello << {
+    println 'Hello world!'
+}
+```
+
+#### Various ways to define a Task
+```groovy
+task hello {
+    doLast {
+        println 'Hello world!'
+    }
+}
+hello.doLast {
+    println "Greetings from the $hello.name task."
+}
+
+
+task(hello) {
+    doLast {
+        println "hello"
+    }
+}
+
+task('hello') {
+    doLast {
+        println "hello"
+    }
+}
+
+tasks.create('hello') {
+    doLast {
+        println "hello"
+    }
+}
+
+```
+
+### Typed Tasks
+```groovy
+task myCopy(type: Copy)
+```
+
+This creates a copy task with no default behavior. The task can be configured using its API (see Copy). The following examples show several different ways to achieve the same configuration.
+
+* Just to be clear, realize that the name of this task is “myCopy”, **but it is of type “Copy”**. 
+* You can have multiple tasks of the same type, but with different names. 
+* You’ll find this gives you a lot of power to implement cross-cutting concerns across all tasks of a particular type.
+
+#### Configuring Typed Tasks various ways
+1. Java style
+```groovy
+Copy myCopy = task(myCopy, type: Copy)
+myCopy.from 'resources'
+myCopy.into 'target'
+myCopy.include('**/*.txt', '**/*.xml', '**/*.properties')
+```
+2. With closure
+```groovy
+task myCopy(type: Copy)
+
+myCopy {
+   from 'resources'
+   into 'target'
+   include('**/*.txt', '**/*.xml', '**/*.properties')
+}
+```
