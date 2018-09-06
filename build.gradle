@@ -11,6 +11,7 @@ buildscript {
 
     repositories {
         mavenCentral()
+        jcenter()
     }
 //    dependencies {
 //        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -25,9 +26,22 @@ plugins {
 
  allprojects {
     repositories {
+        mavenCentral()
         jcenter() 
     }
-}
+
+     //old way applying plugins
+     apply plugin: "java"
+
+     apply plugin: "idea"
+
+     sourceCompatibility = 1.8
+     targetCompatibility = 1.8
+
+     dependencies {
+        // all shared dependencies go here for root and subprojects
+     }
+ }
 
 subprojects {
     version = '1.0'
