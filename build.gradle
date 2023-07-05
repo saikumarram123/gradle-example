@@ -21,6 +21,8 @@ buildscript {
 //The use of apply false adds the plugin to the overall project, but does not add it to the root project.
 plugins {
     id 'org.asciidoctor.convert' version '1.5.6' apply false
+    id "java"
+    id "org.sonarqube" version "4.0.0.2929"
 }
 
 
@@ -46,6 +48,11 @@ plugins {
 subprojects {
     version = '1.0'
 }
-
+sonar {
+    properties {
+         property "sonar.projectKey", "Gradle_App"
+        property "sonar.projectName", "Gradle_App"
+    }
+}
 
 
